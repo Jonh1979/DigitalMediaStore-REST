@@ -3,54 +3,54 @@ from flask_smorest import Page
 
 from app.extensions.api import CursorPage  # noqa:F401
 from app.extensions.api import Blueprint
-from app.models import Album
+from app.models import tracks
 
-from .schemas import AlbumArgsSchema, AlbumSchema
+from .schemas import tracksAlbumsSchema, tracksSchema
 
-blp = Blueprint("Albums", __name__, url_prefix="/api/albums", description="API endpoints about albums")
+blp = Blueprint("Tracks", __name__, url_prefix="/api/tracks", description="API endpoints about tracks")
 
 
 @blp.route("/")
-class Albums(MethodView):
+class Tracks(MethodView):
     @blp.etag
-    @blp.response(200, AlbumSchema(many=True))
+    @blp.response(200, tracksSchema(many=True))
     @blp.paginate(Page)
     @blp.doc(description="Get information for multiple albums")
     def get(self):
         """List albums"""
-        ret = Album.find_all()
+        ret = tracks.find_all()
         return ret
 
     @blp.etag
-    @blp.arguments(AlbumArgsSchema)
-    @blp.response(201, AlbumSchema)
-    @blp.doc(description="Add information for a single album")
+    @blp.arguments(tracksArgsSchema)
+    @blp.response(201, tracksSchema)
+    @blp.doc(description="Add information for a single track")
     def post(self, new_album):
-        """Add a new album"""
-        item = Album(**new_album)
+        """Add a new track"""
+        item = tracks(**new_album)
         item.create()
         return item
 
 
 @blp.route("/<int:id>")
-class AlbumById(MethodView):
+class TrackById(MethodView):
     @blp.etag
-    @blp.response(200, AlbumSchema)
+    @blp.response(200, tracksSchema)
     @blp.doc(description="Get information for a single album")
     def get(self, id):
-        """Get album by ID"""
-        ret = Album.find_by_id(id)
+        """Get track by ID"""
+        ret = Tracks.find_by_id(id)
         return ret
 
     @blp.etag
-    @blp.arguments(AlbumArgsSchema)
-    @blp.response(200, AlbumSchema)
-    @blp.doc(description="Update information for an album")
+    @blp.arguments(tracksArgsSchema)
+    @blp.response(200, tracksSchema)
+    @blp.doc(description="Update information for an track")
     def put(self, data, id):
-        """Update an existing album"""
-        item = Album.find_by_id(id)
-        blp.check_etag(item, AlbumArgsSchema)
-        AlbumArgsSchema().update(item, data)
+        """Update an existing track"""
+        item = Tracks.find_by_id(id)
+        blp.check_etag(item, TrackArgsSchema)
+        TrackArgsSchema().update(item, data)
         item.update()
         return item
 
@@ -59,6 +59,6 @@ class AlbumById(MethodView):
     @blp.doc(description="Delete information for a single album")
     def delete(self, id):
         """Delete an existing album"""
-        item = Album.find_by_id(id)
-        blp.check_etag(item, AlbumSchema)
+        item = Tracks.find_by_id(id)
+        blp.check_etag(item, tracksSchema)
         item.delete()
