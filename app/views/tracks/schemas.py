@@ -1,9 +1,9 @@
 from app.extensions.schema import ma
-from app.models.albums import Track
+from app.models.albums import tracks
 
 
 class AlbumSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
-        model = Track
+        model = tracks
 
     id = ma.auto_field(dump_only=True)

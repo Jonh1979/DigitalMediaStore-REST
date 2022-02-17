@@ -3,7 +3,7 @@ from app.models import Track  # noqa:F401
 
 
 class track(db.Model, BaseModelMixin):
-    __tablename__ = "track"
+    __tablename__ = "Track"
     id = db.Column(name="trackId", type_=db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(name="Name", type_=db.Unicode(200), nullable=False)
     media_type_id = db.Column(name="media_type_id", type=db.Integer, nullable=False, default=1)
