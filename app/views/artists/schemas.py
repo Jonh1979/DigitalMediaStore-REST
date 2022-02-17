@@ -1,6 +1,5 @@
 from app.extensions.schema import ma
 from app.models.artists import Artist
-from app.views.albums.schemas import AlbumSchema
 
 
 class ArtistSchema(ma.SQLAlchemyAutoSchema):
