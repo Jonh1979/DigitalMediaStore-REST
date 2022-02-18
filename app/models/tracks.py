@@ -3,6 +3,7 @@ from app.extensions.database import BaseModelMixin, db
 
 class Track(db.Model, BaseModelMixin):
     __tablename__ = "Track"
+
     id = db.Column(name="TrackId", type_=db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(name="Name", type_=db.Unicode(200), nullable=False)
     media_type_id = db.Column(name="MediaTypeId", type_=db.Integer, nullable=False, default=1)
