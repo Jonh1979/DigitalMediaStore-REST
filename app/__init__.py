@@ -8,7 +8,7 @@ from app.extensions import api
 from app.extensions.database import db
 from app.extensions.schema import ma
 from app.models import tracks
-from app.views import albums, artists, hello, tracks
+from app.views import albums, artists, hello
 
 
 def create_app(config, **kwargs):
