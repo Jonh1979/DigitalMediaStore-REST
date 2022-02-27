@@ -36,7 +36,12 @@ class Tracks(MethodView):
 class TrackById(MethodView):
     @blp.etag
     @blp.response(200, TrackSchema)
+<<<<<<< HEAD
     @blp.doc(description="Get information for a single track")
+=======
+    @blp.paginate(Page)
+    @blp.doc(description="Get information for a single album")
+>>>>>>> 57f56e3d5f7d52559a4c03941eaa61180cf49c01
     def get(self, id):
         """Get track by ID"""
         ret = Track.find_by_id(id)
