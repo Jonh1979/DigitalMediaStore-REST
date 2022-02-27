@@ -17,6 +17,7 @@ pymysql = {extras = ["rsa"], version = "*"}
 
 [dev-packages]
 pytest = "*"
+flake = "*"
 
 [requires]
 python_version = "3.8"
