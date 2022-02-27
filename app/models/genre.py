@@ -2,7 +2,7 @@ from app.extensions.database import BaseModelMixin, db
 
 
 class Genre(db.Model, BaseModelMixin):
-    __tablename__ = "Track"
+    __tablename__ = "Genre"
     id = db.Column(name="GenreId", type_=db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(name="Name", type_=db.Unicode(120), nullable=False, unique=True)
 
