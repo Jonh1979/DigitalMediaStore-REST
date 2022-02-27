@@ -1,5 +1,5 @@
 from app.extensions.database import BaseModelMixin, db
-from app.models import Track  # noqa:F401
+from app.models import track
 
 
 class track(db.Model, BaseModelMixin):
